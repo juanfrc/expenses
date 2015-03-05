@@ -1,0 +1,34 @@
+<h1>Expenses</h1>
+<table>
+	<thead>
+		<th>Category</th>
+		<th>Date</th>
+		<th>Concept</th>
+		<th>Amount</th>
+		<th>Edit</th>
+		<th>Delete</th>
+
+	</thead>
+
+	<% @expenses.each do |expense| %>
+	<tr>
+		<td><%= @categories.find(expense.category_id).name %></td>
+		<td><%= expense.date %></td>
+		<td><%= expense.concept %></td>
+		<td><%= expense.amount %></td>
+		<td><%= link_to "Edit", edit_expense_path(expense) %></td>
+		<td><%= link_to "Delete", expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	</tr>	
+	<% end %>
+	<tr>
+		<th>Total:</th>
+		<th></th>
+		<th></th>
+		<th><%= @total %></th>
+	</tr>
+</table>
+
+<%= link_to "Categories", categories_path %>
+<%= link_to "Add an Expense", new_expense_path %>
+<%= link_to "Create a Category", new_category_path %>
+

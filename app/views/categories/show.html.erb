@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @category.name %>
+</p>
+
+<table>
+	<thead>
+		<th>Date</th>
+		<th>Concept</th>
+		<th>Amount</th>
+		<th>Edit</th>
+		<th>Delete</th>
+
+	</thead>
+	<% @expenses.where(category_id: @category.id).each do |expense| %>
+	<tr>
+		<td><%= expense.date %></td>
+		<td><%= expense.concept %></td>
+		<td><%= expense.amount %></td>
+		<td><%= link_to "Edit", edit_expense_path(expense) %></td>
+		<td><%= link_to "Delete", expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		<% @subtotal += expense.amount %>
+	</tr>	
+	<% end %>
+	<tr>
+		<th>Total:</th>
+		<th></th>
+		<th><%= @subtotal %></th>
+	</tr>
+</table>
+
+
+
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Categories', categories_path %>
