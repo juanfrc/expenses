@@ -22,8 +22,6 @@ class ExpensesController < ApplicationController
     else
       render 'new'
     end
-
-
   end
 
   def show

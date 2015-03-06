@@ -1,34 +1,43 @@
-<h1>Expenses</h1>
-<table>
-	<thead>
-		<th>Category</th>
-		<th>Date</th>
-		<th>Concept</th>
-		<th>Amount</th>
-		<th>Edit</th>
-		<th>Delete</th>
 
-	</thead>
+<div class ="container"	>
+	<div class="panel panel-primary">
+		<div class="panel-heading">Expenses</div>
 
-	<% @expenses.each do |expense| %>
-	<tr>
-		<td><%= @categories.find(expense.category_id).name %></td>
-		<td><%= expense.date %></td>
-		<td><%= expense.concept %></td>
-		<td><%= expense.amount %></td>
-		<td><%= link_to "Edit", edit_expense_path(expense) %></td>
-		<td><%= link_to "Delete", expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	</tr>	
-	<% end %>
-	<tr>
-		<th>Total:</th>
-		<th></th>
-		<th></th>
-		<th><%= @total %></th>
-	</tr>
-</table>
+		<table class ="table table-hover">
+			<thead class="info">
+				<th class = "col-md-3 text-center">Category</th>
+				<th class = "col-md-2 text-center">Date</th>
+				<th class = "col-md-3 text-center">Concept</th>
+				<th class = "col-md-3 text-center">Amount</th>
+				<th class = "col-md-1 text-center">Edit|Delete </th>
 
-<%= link_to "Categories", categories_path %>
-<%= link_to "Add an Expense", new_expense_path %>
-<%= link_to "Create a Category", new_category_path %>
+			</thead>
+			<tbody>
+				<% @expenses.each do |expense| %>
+				<tr class = "text-center">
+					<td><%= link_to @categories.find(expense.category_id).name, category_path(expense.category_id) %></td>
+					<td><%= expense.date.strftime("%d-%m-%Y") %></td>
+					<td><%= expense.concept %></td>
+					<td><%= expense.amount %></td>
+					<td><%= link_to "<span class='glyphicon glyphicon-edit'></span>".html_safe, edit_expense_path(expense) %> | <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+				</tr>	
+				<% end %>
+				<tr class="info">
+					<th>Total:</th>
+					<th></th>
+					<th></th>
+					<th class = "text-center"><%= @total %></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 
+	<div class="container">
+		<div class = 'col-md-offset-8'>
+			<%= link_to "Add an Expense", new_expense_path, class:"btn btn-primary" %>
+			<%= link_to "Create a Category", new_category_path, class:"btn btn-primary" %>
+		</div>
+	</div>
+</div>

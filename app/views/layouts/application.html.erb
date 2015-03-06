@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Expenses</title>
+  <title>Juan'sExpenses</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid top">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    	<a class="navbar-brand" href="#">
+        <span class="glyphicon glyphicon-briefcase top"></span>
+      </a>
+      <a class="navbar-brand" href="#"><span class ='top'>Juan's Expenses</span></a>
+    </div> 
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid navegar">
+	<ul class="nav nav-tabs">
+	  <li role="presentation"><%= link_to "Categories", categories_path %></li>
+	  <li role="presentation"><%= link_to "Expenses", expenses_path %></li>
+	</ul>
+</div>
+
+
 <%= yield %>
 
+<div class="container mar-cont">
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-right">Derechos reservados juanfrc®</p>
+  </div>
+</footer>
+
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

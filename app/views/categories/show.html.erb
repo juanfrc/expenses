@@ -1,38 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class ="container" >
+  <div class ="col-md-8 col-md-offset-2 text-center">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><strong>Category: </strong><%= @category.name %></div>
 
-<p>
-  <strong>Category:</strong>
-  <%= @category.name %>
-</p>
+	    <table class ="table table-hover">
+	      <thead class="info">
+	        <th class = "col-md-2 text-center">Date</th>
+	        <th class = "col-md-3 text-center">Concept</th>
+	        <th class = "col-md-2 text-center">Amount</th>
+	        <th class = "col-md-1 text-center">Edit|Delete </th>
+	      </thead>
 
-<table>
-	<thead>
-		<th>Date</th>
-		<th>Concept</th>
-		<th>Amount</th>
-		<th>Edit</th>
-		<th>Delete</th>
+	      <tbody>
+			<% @expenses.where(category_id: @category.id).each do |expense| %>
+					<tr>
+						<td><%= expense.date.strftime("%d-%m-%Y") %></td>
+						<td><%= expense.concept %></td>
+						<td><%= expense.amount %></td>
+						<td><%= link_to "<span class='glyphicon glyphicon-edit'></span>".html_safe, edit_expense_path(expense) %> | <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+						<% @subtotal += expense.amount %>
+					</tr>	
+			<% end %>
+				<tr>
+					<th>Total:</th>
+					<th></th>
+					<th class = 'text-center'><%= @subtotal %></th>
+					<th></th>
+				</tr>
+	      </tbody>
+	    </table>
+  </div>
+ </div>
+</div> 
 
-	</thead>
-	<% @expenses.where(category_id: @category.id).each do |expense| %>
-	<tr>
-		<td><%= expense.date %></td>
-		<td><%= expense.concept %></td>
-		<td><%= expense.amount %></td>
-		<td><%= link_to "Edit", edit_expense_path(expense) %></td>
-		<td><%= link_to "Delete", expense_path(expense), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-		<% @subtotal += expense.amount %>
-	</tr>	
-	<% end %>
-	<tr>
-		<th>Total:</th>
-		<th></th>
-		<th><%= @subtotal %></th>
-	</tr>
-</table>
-
-
-
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Categories', categories_path %>

@@ -27,9 +27,14 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-    @category.save
-    redirect_to categories_path
+    
+    if @category.save
+      redirect_to categories_path
+    else
+      render 'new'
+    end
   end
+
 
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json

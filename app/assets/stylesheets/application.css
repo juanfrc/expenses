@@ -13,3 +13,51 @@
  *= require_tree .
  *= require_self
  */
+
+/* Application layout */
+
+ .top {
+ 	background: #337ab7;
+ 	color: white;
+ }
+
+.navegar {
+	margin-bottom: 40px;	
+}
+
+/* Button text color */
+.b-color a {
+	color: white;
+}
+
+/*footer */
+
+   html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #337ab7;
+  color: white;
+}
+
+.mar-cont {
+	margin-bottom: 70px;
+
+}
+
+.btn-form {
+ margin-top: 20px;
+}
+
+
+
