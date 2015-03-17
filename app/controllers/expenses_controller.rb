@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
   def index
   	@expenses = Expense.all
-    @categories = Category
+    
 	@total = 0
 	@expenses.each do |expense|
 		@total += expense.amount
